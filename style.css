@@ -1389,6 +1389,7 @@
       margin: 0;
       font-weight: 600;
       color: var(--color-text-strong);
+      font-size: calc(1.4rem * var(--stage-scale-factor)); /* ★追加 */
     }
     
     .result-list {
