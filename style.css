@@ -729,7 +729,7 @@
     }
 
     .slot-horse-img {
-      width: 100px;
+      width:  calc(100px * var(--stage-scale-factor));
       height: auto;
       object-fit: contain;
     }
