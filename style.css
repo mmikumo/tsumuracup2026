@@ -21,17 +21,18 @@
       --color-ghost-bg: rgba(255, 255, 255, 0.75);
       --transition-fast: 180ms ease-out;
       --transition-cta: 120ms ease-out;
-      --stage-ratio-w: 750;
+      --stage-ratio-w: 705;
       --stage-ratio-h: 1400;
-      --stage-base-width: 750px;
-      --stage-base-height: 1400px;
+      --layout-virtual-width: 750px;
+      --layout-virtual-height: 1400px;
+      --stage-visible-width: 705px;
+      --stage-side-gap: 22.5px;
       --stage-scale-factor: 1;
-      --stage-actual-width: calc(var(--stage-base-width) * var(--stage-scale-factor));
-      --stage-actual-height: calc(var(--stage-base-height) * var(--stage-scale-factor));
-      --layout-base-width: 750px;
-      --layout-base-height: 1400px;
-      --layout-actual-width: calc(var(--layout-base-width) * var(--stage-scale-factor));
-      --layout-actual-height: calc(var(--layout-base-height) * var(--stage-scale-factor));
+      --layout-actual-width: calc(var(--layout-virtual-width) * var(--stage-scale-factor));
+      --layout-actual-height: calc(var(--layout-virtual-height) * var(--stage-scale-factor));
+      --stage-actual-width: calc(var(--stage-visible-width) * var(--stage-scale-factor));
+      --stage-actual-height: calc(var(--stage-actual-width) * var(--stage-ratio-h) / var(--stage-ratio-w));
+      --stage-actual-side-gap: calc(var(--stage-side-gap) * var(--stage-scale-factor));
       --stage-bg-ground-height: 599;
       --stage-bg-sky-height: 304;
       --stage-bg-bloom-height: 55;
@@ -158,25 +159,20 @@
     }
     
     .stage-wrapper {
-      width: min(
-        var(--stage-actual-width),
-        max(
-          0px,
-          calc(
-            100vw - max(4px, env(safe-area-inset-left)) - max(4px, env(safe-area-inset-right))
-          )
-        )
-      );
+      width: min(var(--layout-actual-width), 100%);
+      margin: 0 auto;
+      padding-left: var(--stage-actual-side-gap);
+      padding-right: var(--stage-actual-side-gap);
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: calc(24px * var(--stage-scale-factor));
-      padding: 0;
       align-self: center;
       justify-self: center;
     }
-    
+
     .stage {
       width: 100%;
       aspect-ratio: calc(var(--stage-ratio-w) / var(--stage-ratio-h));
