@@ -777,6 +777,13 @@
       const root = document.documentElement;
       if (!root) return;
 
+      root.style.setProperty('--layout-base-width', `${LAYOUT_BASE_W}px`);
+      root.style.setProperty('--layout-base-height', `${LAYOUT_BASE_H}px`);
+      root.style.setProperty('--stage-visible-width', `${STAGE_BASE_W}px`);
+      root.style.setProperty('--stage-ratio-w', `${STAGE_RATIO_W}`);
+      root.style.setProperty('--stage-ratio-h', `${STAGE_RATIO_H}`);
+      root.style.setProperty('--stage-side-gap', `${STAGE_SIDE_GAP}px`);
+
       const availableWidth =
         window.visualViewport?.width ?? window.innerWidth ?? document.documentElement.clientWidth ?? LAYOUT_BASE_W;
       const availableHeight =
