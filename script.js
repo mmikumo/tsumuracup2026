@@ -6,12 +6,12 @@
     const SPEED_UP_MULTIPLIER = 1.8; // SPEED UP倍率
     const SPEED_UP_DURATION_MS = 800; // 加速時間
     const COUNTDOWN_INTERVAL_MS = 700; // カウントダウン間隔
-    const STAGE_RATIO_W = 705; // ステージ比（横）：実表示幅
-    const STAGE_RATIO_H = 1400; // ステージ比（縦）：仮想解像度基準高
-    const STAGE_VISIBLE_W = 705; // ステージの実表示幅
-    const LAYOUT_VIRTUAL_W = 750; // レイアウト全体の仮想基準幅
-    const LAYOUT_VIRTUAL_H = 1400; // レイアウト全体の仮想基準高さ
-    const STAGE_SIDE_GAP = (LAYOUT_VIRTUAL_W - STAGE_VISIBLE_W) / 2; // ステージ左右の余白
+    const STAGE_RATIO_W = 705; // ステージ比（横）：元の仮想解像度
+    const STAGE_RATIO_H = 900; // ステージ比（縦）：元の仮想解像度
+    const STAGE_BASE_W = 705; // ステージ実測用の基準幅
+    const LAYOUT_BASE_W = 750; // レイアウト全体の基準幅
+    const LAYOUT_BASE_H = 1400; // レイアウト全体の基準高さ
+    const STAGE_SIDE_GAP = (LAYOUT_BASE_W - STAGE_BASE_W) / 2; // ステージ左右の余白
     const PREDICTION_TOP_ROW_COUNT = 4; // 予想画面の上段に並べる頭数
     const PREDICTION_BOTTOM_ROW_COUNT = 5; // 予想画面の下段に並べる頭数
     const PREDICTION_TOP_ROW_BOTTOM_OFFSET = 235; // 上段の馬の足元位置（ステージ下端からの距離）
@@ -778,20 +778,20 @@
       if (!root) return;
 
       const availableWidth =
-        window.visualViewport?.width ?? window.innerWidth ?? document.documentElement.clientWidth ?? LAYOUT_VIRTUAL_W;
+        window.visualViewport?.width ?? window.innerWidth ?? document.documentElement.clientWidth ?? LAYOUT_BASE_W;
       const availableHeight =
-        window.visualViewport?.height ?? window.innerHeight ?? document.documentElement.clientHeight ?? LAYOUT_VIRTUAL_H;
+        window.visualViewport?.height ?? window.innerHeight ?? document.documentElement.clientHeight ?? LAYOUT_BASE_H;
       if (!availableWidth || !availableHeight) {
         return;
       }
 
-      const scaleByWidth = availableWidth / LAYOUT_VIRTUAL_W;
-      const scaleByHeight = availableHeight / LAYOUT_VIRTUAL_H;
+      const scaleByWidth = availableWidth / LAYOUT_BASE_W;
+      const scaleByHeight = availableHeight / LAYOUT_BASE_H;
       const scale = Math.max(0, Math.min(scaleByWidth, scaleByHeight));
 
-      const layoutWidth = LAYOUT_VIRTUAL_W * scale;
-      const layoutHeight = LAYOUT_VIRTUAL_H * scale;
-      const stageWidth = STAGE_VISIBLE_W * scale;
+      const layoutWidth = LAYOUT_BASE_W * scale;
+      const layoutHeight = LAYOUT_BASE_H * scale;
+      const stageWidth = STAGE_BASE_W * scale;
       const stageHeight = (STAGE_RATIO_H / STAGE_RATIO_W) * stageWidth;
       const sideGap = STAGE_SIDE_GAP * scale;
 
