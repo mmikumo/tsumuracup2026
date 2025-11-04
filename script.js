@@ -9,8 +9,8 @@
     const STAGE_RATIO_W = 705; // ステージ比（横）：仮想解像度基準幅
     const STAGE_RATIO_H = 900; // ステージ比（縦）：仮想解像度基準高
     const STAGE_BASE_W = 705; // ステージ基準幅（実測時のスケール算出用）
-    const LAYOUT_BASE_W = 750; // レイアウト全体の基準幅
-    const LAYOUT_BASE_H = 1624; // レイアウト全体の基準高さ
+    const LAYOUT_BASE_W = 730; // レイアウト全体の基準幅
+    const LAYOUT_BASE_H = 1560; // レイアウト全体の基準高さ
     const PREDICTION_TOP_ROW_COUNT = 4; // 予想画面の上段に並べる頭数
     const PREDICTION_BOTTOM_ROW_COUNT = 5; // 予想画面の下段に並べる頭数
     const PREDICTION_TOP_ROW_BOTTOM_OFFSET = 235; // 上段の馬の足元位置（ステージ下端からの距離）
