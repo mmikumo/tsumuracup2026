@@ -20,6 +20,7 @@
     const PREDICTION_BOTTOM_ROW_LEFT_OFFSET = 80; // 下段左端のオフセット
     const PREDICTION_BOTTOM_ROW_RIGHT_OFFSET = 80; // 下段右端のオフセット
     const MAX_SELECTION_RANKS = 3; // 選択できる順位の数（1〜3着）
+    const DEFAULT_PREVIEW_HORSE_ID = 'h1';
     
     // レース描画用の仮想解像度と演出用定数
     const RACE_VIRTUAL_WIDTH = 750;
@@ -1078,9 +1079,9 @@
       switch (action) {
         case 'toPredict':
           switchScreen('predict');
-          if (PREDICTION_DISPLAY_ORDER.length > 0) {
-            setPreviewHorse(PREDICTION_DISPLAY_ORDER[0]);
-          }
+
+          // 予想画面に入ったら必ず h1 をプレビュー状態にする
+          setPreviewHorse(DEFAULT_PREVIEW_HORSE_ID);
           break;
         case 'openHowTo':
           openModal(howtoModal);
@@ -1213,7 +1214,11 @@
       updateSelectionSlots();
       updateCardsBadge();
       updateStartButton();
-      resetPreviewPanel();
+      if (currentScreen === 'predict') {
+        setPreviewHorse(DEFAULT_PREVIEW_HORSE_ID);
+      } else {
+        resetPreviewPanel();
+      }
     }
     
     function updateSelectionSlots() {
@@ -1294,6 +1299,11 @@
       app.dataset.screen = screenId;
       updateControls(screenId);
       currentScreen = screenId;
+
+      if (screenId === 'predict') {
+        // 選択画面に来たら常に h1 を選択済みに見せる
+        setPreviewHorse(DEFAULT_PREVIEW_HORSE_ID);
+      }
 
       if (
         screenId === 'predict' &&
