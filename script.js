@@ -1302,8 +1302,7 @@
       currentScreen = screenId;
 
       if (screenId === 'predict') {
-        // 選択画面に来たら常に h1 を選択済みに見せる
-        setPreviewHorse(DEFAULT_PREVIEW_HORSE_ID);
+        // 予想画面に入ったら必ず h1 をプレビュー状態にする
         setPreviewHorse('h1');
       }
 
