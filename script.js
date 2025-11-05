@@ -1082,6 +1082,7 @@
 
           // 予想画面に入ったら必ず h1 をプレビュー状態にする
           setPreviewHorse(DEFAULT_PREVIEW_HORSE_ID);
+          setPreviewHorse('h1');
           break;
         case 'openHowTo':
           openModal(howtoModal);
@@ -1303,6 +1304,7 @@
       if (screenId === 'predict') {
         // 選択画面に来たら常に h1 を選択済みに見せる
         setPreviewHorse(DEFAULT_PREVIEW_HORSE_ID);
+        setPreviewHorse('h1');
       }
 
       if (
