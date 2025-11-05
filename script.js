@@ -15,10 +15,10 @@
     const PREDICTION_BOTTOM_ROW_COUNT = 5; // 予想画面の下段に並べる頭数
     const PREDICTION_TOP_ROW_BOTTOM_OFFSET = 235; // 上段の馬の足元位置（ステージ下端からの距離）
     const PREDICTION_BOTTOM_ROW_BOTTOM_OFFSET = 74; // 下段の馬の足元位置（ステージ下端からの距離）
-    const PREDICTION_TOP_ROW_LEFT_OFFSET = 80; // 上段左端のオフセット
-    const PREDICTION_TOP_ROW_RIGHT_OFFSET = 80; // 上段右端のオフセット
-    const PREDICTION_BOTTOM_ROW_LEFT_OFFSET = 80; // 下段左端のオフセット
-    const PREDICTION_BOTTOM_ROW_RIGHT_OFFSET = 80; // 下段右端のオフセット
+    const PREDICTION_TOP_ROW_LEFT_OFFSET = 166.875; // 上段左端のオフセット（下段と同間隔になるよう調整）
+    const PREDICTION_TOP_ROW_RIGHT_OFFSET = 166.875; // 上段右端のオフセット（下段と同間隔になるよう調整）
+    const PREDICTION_BOTTOM_ROW_LEFT_OFFSET = 105; // 下段左端のオフセット（ステージ内に収める）
+    const PREDICTION_BOTTOM_ROW_RIGHT_OFFSET = 105; // 下段右端のオフセット（ステージ内に収める）
     const MAX_SELECTION_RANKS = 3; // 選択できる順位の数（1〜3着）
     const DEFAULT_PREVIEW_HORSE_ID = 'h1';
     
