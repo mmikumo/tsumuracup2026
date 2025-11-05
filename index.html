@@ -1477,9 +1477,11 @@
       if (!next) return;
 
       if (screenId === 'predict') {
-        // 予想画面に入ったら無条件で h1 をプレビュー
-        setPreviewHorse('h1');
-      }
+  // 予想画面に入ったら無条件で h1 をプレビュー（DOM描画後に実行）
+  setTimeout(() => {
+    setPreviewHorse('h1');
+  }, 50);
+}
 
       previous?.classList.remove('is-active');
       previous?.classList.add('is-leaving');
