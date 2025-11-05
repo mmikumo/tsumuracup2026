@@ -1078,9 +1078,9 @@
       switch (action) {
         case 'toPredict':
           switchScreen('predict');
-          if (PREDICTION_DISPLAY_ORDER.length > 0) {
-            setPreviewHorse(PREDICTION_DISPLAY_ORDER[0]);
-          }
+
+          // 予想画面に入ったら必ず h1 をプレビュー状態にする
+          setPreviewHorse('h1');
           break;
         case 'openHowTo':
           openModal(howtoModal);
@@ -1294,6 +1294,11 @@
       app.dataset.screen = screenId;
       updateControls(screenId);
       currentScreen = screenId;
+
+      if (screenId === 'predict') {
+        // 選択画面に来たら常に h1 を選択済みに見せる
+        setPreviewHorse('h1');
+      }
 
       if (
         screenId === 'predict' &&
