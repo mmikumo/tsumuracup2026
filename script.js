@@ -1302,9 +1302,11 @@
       currentScreen = screenId;
 
       if (screenId === 'predict') {
-        // 予想画面に入ったら必ず h1 をプレビュー状態にする
-        setPreviewHorse('h1');
-      }
+  // 予想画面に入ったら必ず h1 をプレビュー状態にする（DOM描画後に実行）
+  setTimeout(() => {
+    setPreviewHorse('h1');
+  }, 50);
+}
 
       if (
         screenId === 'predict' &&
