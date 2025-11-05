@@ -1268,6 +1268,8 @@
       switch (action) {
         case 'toPredict':
           switchScreen('predict');
+          // 予想画面に入ったら必ず h1 をプレビューさせる
+          setPreviewHorse('h1');
           break;
         case 'openHowTo':
           openModal(howtoModal);
@@ -1473,6 +1475,11 @@
       const previous = document.querySelector(`.screen[data-screen-id="${currentScreen}"]`);
       const next = document.querySelector(`.screen[data-screen-id="${screenId}"]`);
       if (!next) return;
+
+      if (screenId === 'predict') {
+        // 予想画面に入ったら無条件で h1 をプレビュー
+        setPreviewHorse('h1');
+      }
 
       previous?.classList.remove('is-active');
       previous?.classList.add('is-leaving');
