@@ -1,1 +1,0 @@
-# tsumuracup2026
