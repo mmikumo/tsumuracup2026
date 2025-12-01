@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>つむら杯 新春レース（仮）</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="margin-bands" aria-hidden="true"></div>
+  <div class="game-viewport" id="viewport">
+    <div class="game-canvas">
+      <div class="game-canvas-inner">
+      <header class="page-header" aria-hidden="true">
+        <div class="logo-placeholder" aria-hidden="true">LOGO</div>
+      </header>
+
+      <main class="app" data-screen="title">
+    <div class="stage-wrapper">
+      <section class="stage" aria-live="polite">
+        <div class="screen screen-title is-active" data-screen-id="title">
+          <div class="title-stage">
+            <div class="title-backdrop race-backdrop" aria-hidden="true">
+              <div class="title-layer race-layer race-layer--sky title-layer--sky"></div>
+              <div class="title-layer race-layer race-layer--saku title-layer--saku"></div>
+              <div class="title-layer race-layer race-layer--ground title-layer--ground"></div>
+            </div>
+            <div class="title-runner-layer" aria-hidden="true"></div>
+            <div class="title-logo-frame">
+              <img src="assets/logo/game_logo.png" alt="つむら杯 新春レースのタイトルロゴ" class="title-logo-img"><!-- ★ここを変更：タイトルロゴのファイルパス -->
+            </div>
+          </div>
+        </div>
+
+        <div class="screen screen-predict" data-screen-id="predict" aria-hidden="true">
+          <div class="predict-stage">
+            <div class="predict-board">
+              <section class="predict-preview" aria-live="polite" aria-label="選択中の馬の紹介">
+                <div class="predict-preview-frame">
+                  <img src="" alt="" class="predict-preview-name" hidden>
+                </div>
+              </section>
+              <section class="predict-selection" aria-label="予想した順位">
+                <ol class="selection-slots">
+                  <li class="selection-slot" data-rank="0">
+                    <img src="assets/haikei/crown1.png" alt="1着の王冠" class="slot-crown-img">
+                    <button class="slot-clear" data-remove-rank="0" hidden aria-label="1着の選択を取り消す">
+                      <img src="assets/haikei/cancel.png" alt="">
+                    </button>
+                    <div class="slot-horse">
+                      <img src="assets/horses/silhouette.png" alt="未選択のシルエット" class="slot-horse-img">
+                    </div>
+                    <span class="sr-only">1着の枠</span>
+                  </li>
+                  <li class="selection-slot" data-rank="1">
+                    <img src="assets/haikei/crown2.png" alt="2着の王冠" class="slot-crown-img">
+                    <button class="slot-clear" data-remove-rank="1" hidden aria-label="2着の選択を取り消す">
+                      <img src="assets/haikei/cancel.png" alt="">
+                    </button>
+                    <div class="slot-horse">
+                      <img src="assets/horses/silhouette.png" alt="未選択のシルエット" class="slot-horse-img">
+                    </div>
+                    <span class="sr-only">2着の枠</span>
+                  </li>
+                  <li class="selection-slot" data-rank="2">
+                    <img src="assets/haikei/crown3.png" alt="3着の王冠" class="slot-crown-img">
+                    <button class="slot-clear" data-remove-rank="2" hidden aria-label="3着の選択を取り消す">
+                      <img src="assets/haikei/cancel.png" alt="">
+                    </button>
+                    <div class="slot-horse">
+                      <img src="assets/horses/silhouette.png" alt="未選択のシルエット" class="slot-horse-img">
+                    </div>
+                    <span class="sr-only">3着の枠</span>
+                  </li>
+                </ol>
+              </section>
+            </div>
+            <div class="predict-field" role="region" aria-label="予想する馬の一覧">
+              <div class="horse-grid" role="list">
+                <!-- JavaScriptで馬カードを展開 -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen screen-race" data-screen-id="race" aria-hidden="true">
+            <div class="race-stage">
+              <div class="race-prediction-panel" aria-label="あなたの予想順位">
+                <img src="assets/race/yosou.png" alt="あなたの予想パネル" class="race-prediction-bg"><!-- ★ここを変更：予想パネルの差し替え -->
+                <ol class="race-prediction-list"></ol>
+              </div>
+              <div class="race-overlay">
+                <div class="countdown" aria-live="assertive"></div>
+                <div class="speedup-tip">SPEED UP で加速！</div>
+                <div class="race-straight-telop" aria-hidden="true">直線！</div>
+                <div class="race-distance-telop" data-distance="200" aria-hidden="true">残り200m</div>
+                <div class="race-distance-telop" data-distance="100" aria-hidden="true">残り100m</div>
+                <div class="race-photo-flash" aria-hidden="true"></div>
+              </div>
+              <div class="race-track">
+                <div class="race-scroll">
+                  <div class="race-scroll-inner">
+                    <div class="race-backdrop" aria-hidden="true">
+                      <div class="race-layer race-layer--sky"></div>
+                      <div class="race-layer race-layer--saku"></div>
+                      <div class="race-layer race-layer--ground"></div>
+                    </div>
+                    <div class="race-lanes"></div>
+                    <div class="race-opponents"></div>
+                    <div class="race-finishers"></div>
+                    <div class="race-speed-effects" aria-hidden="true"></div>
+                    <canvas
+                      class="race-canvas"
+                      width="705"
+                      height="900"
+                      aria-label="レース演出キャンバス"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="screen screen-result" data-screen-id="result" aria-hidden="true">
+          <div class="result-stage">
+            <div class="result-title">
+              <p class="result-celebration">おめでとう！<!-- ★ここを変更：祝福メッセージ --></p>
+              <h2 class="result-heading">予想的中！<!-- ★ここを変更：メイン見出し --></h2>
+              <p class="result-sub">あなたが選んだ通りの順位でゴールしました。<!-- ★ここを変更：補足テキスト --></p>
+            </div>
+            <ol class="result-list"></ol>
+          </div>
+        </div>
+      </section>
+
+      <div class="stage-buttons" aria-live="polite">
+        <div class="button-group start-buttons is-active" data-buttons-id="title">
+          <button class="btn btn-question" data-action="openHowTo" aria-label="遊び方を読む">
+            <img src="assets/button/question.svg" alt="">
+          </button>
+          <button class="btn btn-start" data-action="toPredict" aria-label="ゲームを始める">
+            <img src="assets/button/START.svg" alt="">
+          </button>
+        </div>
+
+        <div class="button-group predict-buttons" data-buttons-id="predict" aria-hidden="true">
+          <button class="btn btn-select" data-action="selectHorse" aria-label="選択中の馬を順位に追加">
+            <img src="assets/button/SELECT.svg" alt="">
+          </button>
+          <div class="button-row">
+            <button class="btn btn-title" data-action="backToTitle" aria-label="タイトルへ戻る">
+              <img src="assets/button/TITLE.svg" alt="">
+            </button>
+            <button class="btn btn-reselect" data-action="clearSelection" aria-label="選び直す">
+              <img src="assets/button/reselect.svg" alt="">
+            </button>
+          </div>
+        </div>
+
+        <div class="button-group race-buttons" data-buttons-id="race" aria-hidden="true">
+          <button class="btn btn-speedup" data-action="speedUp" aria-label="スピードアップ">
+            <img src="assets/button/SPEEDUP.svg" alt="">
+          </button>
+        </div>
+
+        <div class="button-group result-buttons" data-buttons-id="result" aria-hidden="true">
+          <button class="btn btn-replay" data-action="replay" aria-label="もう一度遊ぶ">
+            <img src="assets/button/REPLAY.svg" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="banner-section" aria-label="スポンサー情報">
+      <ul class="banner-list">
+        <li class="banner-card">
+          <a href="https://tsumura-kogei.com/" target="_blank" rel="noopener">
+            <img src="assets/banners/banner_tsumura_kogei.png" alt="つむら工芸 公式サイト" loading="lazy">
+          </a>
+        </li>
+        <li class="banner-card">
+          <a href="https://tsumura-kogei.com/tsumura-module-system/" target="_blank" rel="noopener">
+            <img src="assets/banners/banner_tsumura_module.png" alt="TSUMURA MODULE SYSTEM 公式サイト" loading="lazy">
+          </a>
+        </li>
+      </ul>
+    </section>
+      </main>
+
+      <div class="modal is-hidden" id="howto-modal" role="dialog" aria-modal="true" aria-labelledby="howto-title">
+        <div class="modal-content">
+          <h2 id="howto-title">遊び方</h2>
+          <button class="modal-close" data-action="closeModal" aria-label="閉じる">×</button>
+          <div class="modal-body">
+            <ol>
+              <li>9頭の中から 1→2→3 位の順で馬を選びます。</li>
+              <li>レースで SPEED UP を使って白熱の追い上げを楽しみましょう。</li>
+              <li>結果画面であなたの予想を振り返り、もう一度挑戦できます。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="modal-backdrop is-hidden" data-action="closeModal" aria-hidden="true"></div>
+    </div>
+    </div>
+  </div>
+
+</body>
+</html>
